@@ -2,7 +2,10 @@ from discord.ext import commands
 import manager
 import discord
 import logging
+
 class cobrinha(commands.Bot):
+
+
     async def on_ready(self):
         print('Logged in as')
         print("Username: "+bots.user.name)
@@ -16,4 +19,4 @@ class cobrinha(commands.Bot):
 
 if __name__ == '__main__':
     bots = cobrinha(command_prefix='~')
-    bots.run('')
+    bots.run('MzEyMTg4MTcwMTM5ODYxMDAy.C_XbcQ.lifp9LTw7Bmu78366R_d-Hfr71c')
