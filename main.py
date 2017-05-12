@@ -1,21 +1,26 @@
-from discord.ext import commands
-import manager
+from discord.ext.commands import Bot
+# import manager
 import discord
 import logging
+import sys
+import inspect
+import commands
 
-class cobrinha(commands.Bot):
-
+class cobrinha(Bot):
 
     async def on_ready(self):
         print('Logged in as')
         print("Username: "+bots.user.name)
         print("ID: "+bots.user.id)
         print('==========\n')
-        for extension in manager.extensions:
-            print(f"  Loading {extension}...")
-            bots.load_extension("commands." + extension)
-            print(f"  Loading of module {extension} completed.")
+        self.loadCommands()
         print("Extension loading complete.\n")
+
+    def loadCommands(self):
+        commandClasses = inspect.getmembers(commands, inspect.isclass)
+        for command in commandClasses:
+            self.add_cog(command[1](self))
+
 
 if __name__ == '__main__':
     bots = cobrinha(command_prefix='~')
