@@ -3,7 +3,7 @@ import discord
 import re
 class status:
     def __init__(self, bots):
-        print("   [status.py] Initializing...", end="")
+        print("   [status.py] Initializing...")
         self.bots = bots
     @commands.command(pass_context=True, aliases=['presence'])
     async def status(self,ctx):
