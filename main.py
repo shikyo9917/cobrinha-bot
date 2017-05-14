@@ -1,12 +1,10 @@
 from discord.ext.commands import Bot
-# import manager
-import discord
-import logging
-import sys
-import inspect
-import commands
-import os
 from read_env import read_env
+import os
+import inspect
+
+import commands
+from model import *
 
 class cobrinha(Bot):
 
@@ -27,4 +25,7 @@ class cobrinha(Bot):
 if __name__ == '__main__':
     read_env()
     bots = cobrinha(command_prefix='~')
+    # Cria as tabelas no banco caso não existam
+    DB.bootstrap()
+
     bots.run(os.environ['TOKEN'])
