@@ -3,7 +3,7 @@ from model.bank_services import *
 
 from .base import CommandBase
 
-class Bank(CommandBase):
+class BankCommands(CommandBase):
     def __init__(self, cobrinha):
         print("   [bank_account.py] Initializing...")
         self.cobrinha = cobrinha
@@ -11,9 +11,12 @@ class Bank(CommandBase):
 
     @command(pass_context=True)
     async def deposito(self, context):
-        self.bank_services.deposito(context)
+        id = context.message.author.id
+        value = int(self.remove_prefix(context.message.content))
+        self.bank_services.deposito(id,value)
 
     @command(pass_context=True)
     async def saldo(self,context):
-        value = self.bank_services.saldo(context)
+        id = context.message.author.id
+        value = self.bank_services.saldo(id)
         await self.cobrinha.send_message(context.message.channel, value)

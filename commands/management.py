@@ -7,7 +7,7 @@ import re
 
 from .base import CommandBase
 
-class management(CommandBase):
+class ManagementCommands(CommandBase):
     def __init__(self, cobrinha):
         print("   [Management.py] Initializing...")
         self.cobrinha = cobrinha
