@@ -1,3 +1,5 @@
 from .status import status
-from .delete import delete
+from .management import management
 from .test import TestCommands
+from .games import games
+from .bank_account import Bank
