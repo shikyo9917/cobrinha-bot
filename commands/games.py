@@ -1,7 +1,9 @@
 from discord.ext.commands import command
 import discord
 from model.bank_services import *
-class games:
+
+from .base import CommandBase
+class games(CommandBase):
     def __init__(self, cobrinha):
         print("   [games.py] Initializing...")
         self.cobrinha = cobrinha

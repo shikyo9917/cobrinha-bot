@@ -1,7 +1,9 @@
 from discord.ext.commands import command
 from model.bank_services import *
 
-class Bank:
+from .base import CommandBase
+
+class Bank(CommandBase):
     def __init__(self, cobrinha):
         print("   [bank_account.py] Initializing...")
         self.cobrinha = cobrinha

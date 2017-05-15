@@ -1,17 +1,20 @@
-""" This class is meant to be the manager of your server 
+""" This class is meant to be the manager of your server
     it means it will have commands to kick, mute and things like that"""
 
 from discord.ext.commands import command
 import discord
 import re
-class management:
+
+from .base import CommandBase
+
+class management(CommandBase):
     def __init__(self, cobrinha):
         print("   [Management.py] Initializing...")
         self.cobrinha = cobrinha
-   
+
     @command(pass_context=True, aliases=['del','purge'])
     async def delete(self,context):
-        limit = management.RemovePrefix(context.message.content)
+        limit = self.remove_prefix(context.message.content)
         if management.check_isdigit(limit):
             if management.check_ifhundred(int(limit)):
                 await self.cobrinha.purge_from(context.message.channel, limit=int(limit))
@@ -30,8 +33,3 @@ class management:
             return True
         else:
             return False
-    def RemovePrefix(msg):
-        msg = re.sub(r'~[a-zA-Z0-9]+?\s','', msg)
-        return msg
-
-
