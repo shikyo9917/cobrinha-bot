@@ -10,8 +10,8 @@ class cobrinha(Bot):
 
     async def on_ready(self):
         print('Logged in as')
-        print("Username: "+bots.user.name)
-        print("ID: "+bots.user.id)
+        print("Username: "+cobrinha.user.name)
+        print("ID: "+cobrinha.user.id)
         print('==========\n')
         self.loadCommands()
         print("Extension loading complete.\n")
@@ -24,8 +24,8 @@ class cobrinha(Bot):
 
 if __name__ == '__main__':
     read_env()
-    bots = cobrinha(command_prefix='~')
+    cobrinha = cobrinha(command_prefix='~')
     # Cria as tabelas no banco caso não existam
     DB.bootstrap()
 
-    bots.run(os.environ['TOKEN'])
+    cobrinha.run(os.environ['TOKEN'])

@@ -3,9 +3,9 @@ import re
 from model import *
 
 class TestCommands:
-    def __init__(self, bot):
+    def __init__(self, cobrinha):
         print("   [test.py] Initializing...")
-        self.bot = bot
+        self.cobrinha = cobrinha
 
     @command(pass_context=True, aliases=['perms'])
     async def permissions(self, context):
@@ -33,7 +33,7 @@ class TestCommands:
         if(account != None):
             value = account.amount
 
-        await self.bot.send_message(context.message.channel, value)
+        await self.cobrinha.send_message(context.message.channel, value)
 
     def RemovePrefix(self, msg):
         msg = re.sub(r'~[a-zA-Z0-9]+?\s','', msg)

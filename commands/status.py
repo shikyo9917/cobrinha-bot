@@ -2,16 +2,16 @@ from discord.ext import commands
 import discord
 import re
 class status:
-    def __init__(self, bots):
+    def __init__(self, cobrinha):
         print("   [status.py] Initializing...")
-        self.bots = bots
+        self.cobrinha = cobrinha
     @commands.command(pass_context=True, aliases=['presence'])
     async def status(self,ctx):
-            avatar = self.bots.user.avatar_url
+            avatar = self.cobrinha.user.avatar_url
             bot_status = status.RemovePrefix(str(ctx.message.content))
             em = status.embed(bot_status, ctx)
-            await self.bots.send_message(ctx.message.channel, '', embed=em)
-            await self.bots.change_presence(game=discord.Game(name=bot_status))
+            await self.cobrinha.send_message(ctx.message.channel, '', embed=em)
+            await self.cobrinha.change_presence(game=discord.Game(name=bot_status))
 
     def RemovePrefix(msg):
         msg = re.sub(r'~[a-zA-Z0-9]+?\s','', msg)
@@ -22,5 +22,5 @@ class status:
         em.add_field(name='Status', value=status)
         em.set_footer(text=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
         return em
-def setup(bots):
-    bots.add_cog(status(bots))
+def setup(cobrinha):
+    cobrinha.add_cog(status(cobrinha))
