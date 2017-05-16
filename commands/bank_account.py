@@ -20,11 +20,15 @@ class BankCommands(CommandBase):
         id = context.message.author.id
         value = self.bank_services.bank_statement(id)
         await self.cobrinha.send_message(context.message.channel, value)
-    
+
     @command(pass_context=True)
     async def transferir(self, context):
         msg = str(self.remove_prefix(context.message.content)).split(' ')
         id = context.message.author.id
-        beneficiary = msg[0]
+        mentions = context.message.mentions
+        if(len(mentions) != 1):
+            await self.cobrinha.send_message(context.message.channel, "Uso: ~transferir @<membro> valor")
+            return
+        beneficiary = mentions[0]
         value = int(msg[1])
-        self.bank_services.bank_transfer(beneficiary,id,value)
+        self.bank_services.bank_transfer(beneficiary.id,id,value)
