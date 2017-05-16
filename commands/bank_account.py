@@ -13,10 +13,18 @@ class BankCommands(CommandBase):
     async def deposito(self, context):
         id = context.message.author.id
         value = int(self.remove_prefix(context.message.content))
-        self.bank_services.deposito(id,value)
+        self.bank_services.deposit(id,value)
 
     @command(pass_context=True)
     async def saldo(self,context):
         id = context.message.author.id
-        value = self.bank_services.saldo(id)
+        value = self.bank_services.bank_statement(id)
         await self.cobrinha.send_message(context.message.channel, value)
+    
+    @command(pass_context=True)
+    async def transferir(self, context):
+        msg = str(self.remove_prefix(context.message.content)).split(' ')
+        id = context.message.author.id
+        beneficiary = msg[0]
+        value = int(msg[1])
+        self.bank_services.bank_transfer(beneficiary,id,value)

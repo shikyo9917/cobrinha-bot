@@ -9,6 +9,8 @@ class TestCommands(CommandBase):
         print("   [test.py] Initializing...")
         self.cobrinha = cobrinha
 
-    @command(pass_context=True, aliases=['perms'])
+    @command(pass_context=True, aliases=['t'])
     async def permissions(self, context):
-        print(context.message.channel.permissions_for(context.message.author).manage_messages)
+        msg = str(self.remove_prefix(context.message.content))
+        print(msg)
+        print(msg.split(' '))
